@@ -1,11 +1,11 @@
 let frontendURL = "http://127.0.0.1:5500/JS/NODE-HALLBOOKING/index.html"
-let backendURL = ""
+let backendURL = "http://localhost:3001"
 
 document.getElementById('showrooms').addEventListener('click', (e)=>{
 
     console.log(e.target);
 
-    fetch("http://localhost:3001/showrooms")
+    fetch(backendURL+ "/showrooms")
     .then( res => res.json())
     .then(output => {
         displayRooms(output)
@@ -16,7 +16,7 @@ document.getElementById('showBookedRooms').addEventListener('click', (e)=>{
 
     console.log(e.target);
 
-    fetch("http://localhost:3001/showbookedrooms")
+    fetch(backendURL + "/showbookedrooms")
     .then( res => res.json())
     .then(output => {
         displayBookedRooms(output)
@@ -82,7 +82,7 @@ document.getElementById('bookingForm').addEventListener('submit', (e)=> {
 
     } else {
 
-        fetch ("http://localhost:3001/bookRoomJS" , {
+        fetch (backendURL+"/bookRoomJS" , {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
