@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="CSS/bootstrap.css">
+    <link rel="stylesheet" href="CSS/styles.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h3 class="text-center">
+                    ADD ROOM
+                </h3>
+                <form method="POST" id="addRoomForm" action="http://localhost:3001/addroomForm">
+                    <div class="form-group-row">
+
+                        <label for="">SELECT TYPE OF ROOM</label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="classOfRoom" id="inlineRadio1"
+                                value="eco">
+                            <label class="form-check-label" for="inlineRadio1">Economy</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="classOfRoom" id="inlineRadio2"
+                                value="deluxe">
+                            <label class="form-check-label" for="inlineRadio2">Deluxe</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="classOfRoom" id="inlineRadio3"
+                                value="suite">
+                            <label class="form-check-label" for="inlineRadio3"> Suite</label>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group-row">
+                        <label for="roomCapacity">Enter Capacity of Room</label>
+                        <input class="form-control" type="number" name="roomCapacity" id="roomCapacity" required>
+                    </div>
+
+                    <div class="form-group-row">
+                        <label for="roomRate">Enter Rate for the Room</label>
+                        <input class="form-control" type="number" name="roomRate" id="roomRate" required>
+
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success my-3">Submit</button> 
+                        <button type="reset" class="btn btn-danger my-3">Reset</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+                <button id="showrooms" class="btn btn-primary my-3"> SHOW ROOMS</button>
+                
+                <table class="table myTable" id="displayTable">
+                    <thead>
+                        <tr>
+                            <th scope="col">RoomID</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Capacity</th>
+                            <th scope="col">Rate (per hour) </th>
+                        </tr>
+                    </thead>
+                    <tbody id="myTableBody">
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+                <button id="showBookedRooms" class="btn btn-primary my-3"> SHOW BOOKED ROOMS</button>
+                
+                <table class="table myTable" id="displayTable">
+                    <thead>
+                        <tr>
+                            <th scope="col">RoomID</th>
+                            <th scope="col">Customer</th>
+                            <th scope="col">Start Time </th>
+                            <th scope="col">End Time </th>
+                        </tr>
+                    </thead>
+                    <tbody id="myTableBody2">
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 offset-md-2 text-center">
+                <form action="http://localhost:3001/bookRoomForm" class="" id="bookingForm" method="POST">
+                    <div class="form-row my-3">
+                        <div class="col-4 col-form-label">
+                            <label for="roomID" class="my-auto">Enter Room ID</label>
+                        </div>
+                        <div class="col-8">
+                            <input type="number" name="roomID" id="roomID" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-row my-3">
+                        <div class="col-4 col-form-label">
+                            <label for="customerName" class="my-auto">Customer Name</label>
+                        </div>
+                        <div class="col-8">
+                            <input type="text" name="customerName" id="customerName" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row my-3">
+                        <div class="col-4 col-form-label">
+                            <label for="customerName" class="my-auto">Start Time</label>
+                        </div>
+                        <div class="col-8">
+                            <input type="datetime-local" name="startTime" id="startTime" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-row my-3">
+                        <div class="col-4 col-form-label">
+                            <label for="customerName" class="my-auto">End Time</label>
+                        </div>
+                        <div class="col-8">
+                            <input type="datetime-local" name="endTime" id="endTime" class="form-control">
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success my-3">Submit</button> 
+                        <button type="reset" class="btn btn-danger my-3">Reset</button>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+
+       
+    </div>
+
+
+    <script src="JS/script.js"></script>
+</body>
+
+</html>
