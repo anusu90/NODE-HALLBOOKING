@@ -1,3 +1,6 @@
+let frontendURL = "http://127.0.0.1:5500/JS/NODE-HALLBOOKING/index.html"
+let backendURL = ""
+
 document.getElementById('showrooms').addEventListener('click', (e)=>{
 
     console.log(e.target);
@@ -51,12 +54,59 @@ displayBookedRooms = (output) => {
         tr.innerHTML =
             `  <th scope="row">${room.roomID}</th>` +
             `         <td>${room.customerName}</td>` +
-            `  <td>${room.startTime}</td>` +
-            `  <td>${room.endTime}</td>`
+            `  <td>${String(new Date(room.startTime)).slice(0,21)}</td>` +
+            `  <td>${String(new Date(room.endTime)).slice(0,21)}</td>`
         
         tbody.appendChild(tr)
 
     })
 }
 
-displayRooms();
+// displayRooms();
+
+
+
+document.getElementById('bookingForm').addEventListener('submit', (e)=> {
+
+    e.preventDefault();
+    let roomID = document.getElementById("roomID").value;
+    let customerName = document.getElementById("customerName").value;
+    let startTime = new Date (document.getElementById("startTime").value);
+    let endTime = new Date (document.getElementById("endTime").value);
+
+    if (startTime > endTime){
+        alert("End time cannot be less than Start time")
+    } else if (startTime < new Date() || endTime < new Date()){
+
+        alert ("Enter valid dates")
+
+    } else {
+
+        fetch ("http://localhost:3001/bookRoomJS" , {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+              },
+            body: JSON.stringify({
+
+                roomID: roomID,
+                customerName: customerName,
+                startTime: startTime,
+                endTime: endTime,
+            })
+
+        })
+            .then(function (response) {
+                let status = (response.status)
+                if (status === 200){
+                    window.location = frontendURL;
+                } else if (status === 406){
+                    alert ("Rooms not available on those dates")
+                }
+                return response.json()
+            })
+            .then(outcome => console.log(outcome))
+    }
+
+})

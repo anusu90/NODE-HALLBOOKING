@@ -1,3 +1,5 @@
+let frontendURL = "http://127.0.0.1:5500/JS/NODE-HALLBOOKING/index.html"
+
 Rooms = require('./JS/rooms');
 Hotel = require("./JS/hotel");
 
@@ -32,7 +34,7 @@ app.post("/addroom", (req,res)=> {
 
 app.post("/addroomForm", (req,res)=> {
     myHotel.addroom(parseInt(req.body.roomCapacity),req.body.classOfRoom, parseFloat(req.body.roomRate))
-    res.redirect("http://127.0.0.1:5500/JS/NODE-HALLBOOKING/index.html")
+    res.redirect(frontendURL)
     
 })
 
@@ -44,16 +46,29 @@ app.get("/showbookedrooms", (req,res)=> {
     res.json(myHotel.bookedRooms)
 })
 
-app.post("/bookRoomForm", (req,res)=> {
-    console.log(req.body)
+// app.post("/bookRoomForm", (req,res)=> {
+//     console.log(req.body)
 
-    let bookingOutcome = myHotel.bookRoom(req.body.customerName,req.body.roomID,new Date(req.body.startTime),new Date(req.body.endTime))
+//     let bookingOutcome = myHotel.bookRoom(req.body.customerName,req.body.roomID,new Date(req.body.startTime),new Date(req.body.endTime))
+//     if(bookingOutcome ===1) {
+//         res.redirect("http://127.0.0.1:5500/JS/NODE-HALLBOOKING/index.html")
+//     } else {
+//         res.status(406).json({
+//             "message": "The room is not available on selected Dates"
+//         })
+//     }
+// })
+
+app.post("/bookRoomJS", (req,res)=> {
+
+    let bookingOutcome = myHotel.bookRoom(req.body.customerName,req.body.roomID, new Date(req.body.startTime), new Date(req.body.endTime))
     if(bookingOutcome ===1) {
-        res.redirect("http://127.0.0.1:5500/JS/NODE-HALLBOOKING/index.html")
+        res.status(200).json({
+            "message": "The room has been booked Dates"
+        })
     } else {
         res.status(406).json({
             "message": "The room is not available on selected Dates"
         })
     }
-    
 })

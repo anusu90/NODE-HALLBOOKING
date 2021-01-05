@@ -16,17 +16,29 @@ class Hotel{
     checkAvailability (roomID,startTime,endTime){
         let selectedRoom = this.bookedRooms.find(bookedRoomObj => bookedRoomObj.roomID === roomID);
 
-
         if (selectedRoom){
-            return false
+
+            if (startTime > selectedRoom.startTime   && startTime < selectedRoom.endTime){
+                return false
+            } else if (endTime > selectedRoom.endTime && endTime < selectedRoom.startTime) {
+                return false
+            } else {
+                return true
+            }
+
+
         } else {
-            return true
+            return true;
         }
+
+
 
     }
 
     bookRoom(customerName,roomID,startTime,endTime){
 
+        console.log(roomID,startTime,endTime);
+        console.log('HERE');
         if(this.checkAvailability(roomID,startTime,endTime)){
 
             console.log(roomID);
