@@ -1,4 +1,4 @@
-let frontendURL = "http://127.0.0.1:5500/JS/NODE-HALLBOOKING/index.html"
+let frontendURL = "https://angry-lumiere-4df132.netlify.app/"
 
 Rooms = require('./JS/rooms');
 Hotel = require("./JS/hotel");

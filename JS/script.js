@@ -1,5 +1,5 @@
-let frontendURL = "http://127.0.0.1:5500/JS/NODE-HALLBOOKING/index.html"
-let backendURL = "http://localhost:3001"
+let frontendURL = "https://angry-lumiere-4df132.netlify.app/"
+let backendURL = "https://guvi-hallbooking-1.herokuapp.com"
 
 document.getElementById('showrooms').addEventListener('click', (e)=>{
 
